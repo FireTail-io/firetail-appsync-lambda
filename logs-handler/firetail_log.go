@@ -117,7 +117,7 @@ func (f *FiretailLog) addPlaintextEventMessage(logEvent *events.CloudwatchLogsLo
 		f.Query = &logParts[1]
 		break
 	case RequestHeaders:
-		jsonPayload, err := parseHeaders(logPayload)
+		jsonPayload, err := parseMultivalueHeaders(logPayload)
 		if err != nil {
 			return err
 		}
