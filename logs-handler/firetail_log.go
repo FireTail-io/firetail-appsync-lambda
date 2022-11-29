@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"reflect"
 	"strings"
 
 	"github.com/aws/aws-lambda-go/events"
@@ -39,6 +40,16 @@ type FiretailLog struct {
 	ResponseMappings *[]json.RawMessage `json:"responseMappings,omitempty"`
 }
 
+func (f *FiretailLog) IsPopulated() bool {
+	fValue := reflect.ValueOf(*f)
+	for i := 0; i < fValue.NumField(); i++ {
+		if fValue.Field(i).Kind() == reflect.Pointer && !fValue.Field(i).IsNil() {
+			return true
+		}
+	}
+	return false
+}
+
 func (f *FiretailLog) AddEventMessage(logType LogMessageType, logEvent *events.CloudwatchLogsLogEvent) error {
 	var rawMessage json.RawMessage
 	if logType != Plaintext {
@@ -69,6 +80,9 @@ func (f *FiretailLog) AddEventMessage(logType LogMessageType, logEvent *events.C
 	case RequestSummary:
 		f.RequestSummary = &rawMessage
 		break
+
+	default:
+		return nil
 	}
 
 	return nil
@@ -116,6 +130,7 @@ func (f *FiretailLog) addPlaintextEventMessage(logEvent *events.CloudwatchLogsLo
 	case GraphQLQuery:
 		f.Query = &logParts[1]
 		break
+
 	case RequestHeaders:
 		jsonPayload, err := parseMultivalueHeaders(logPayload)
 		if err != nil {
@@ -128,6 +143,7 @@ func (f *FiretailLog) addPlaintextEventMessage(logEvent *events.CloudwatchLogsLo
 		rawJson := json.RawMessage(jsonPayloadBytes)
 		f.RequestHeaders = &rawJson
 		break
+
 	case ResponseHeaders:
 		jsonPayload, err := parseHeaders(logPayload)
 		if err != nil {
@@ -140,6 +156,9 @@ func (f *FiretailLog) addPlaintextEventMessage(logEvent *events.CloudwatchLogsLo
 		rawJson := json.RawMessage(jsonPayloadBytes)
 		f.ResponseHeaders = &rawJson
 		break
+
+	default:
+		return nil
 	}
 
 	return nil

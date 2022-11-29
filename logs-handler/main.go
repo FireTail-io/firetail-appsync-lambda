@@ -65,6 +65,10 @@ func Handler(ctx context.Context, event events.CloudwatchLogsEvent) error {
 
 	// Print all the FiretailLogs we built up
 	for requestID, firetailLog := range firetailLogs {
+		if !firetailLog.IsPopulated() {
+			log.Printf("No useful information was extracted from this Cloudwatch logs batch for request ID %s", requestID)
+			continue
+		}
 		logBytes, err := json.Marshal(firetailLog)
 		if err != nil {
 			log.Printf("Err marshalling firetail log for request ID %s: %s", requestID, err.Error())
