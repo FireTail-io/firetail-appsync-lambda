@@ -23,19 +23,19 @@ func trimHeadersString(headersString string) (string, error) {
 
 // (ー_ー)!! I am ashamed of this, please do not talk to me about it
 // Parses the headers string we get from CloudWatch into a map[string]string.
-func parseHeaders(headersString string) (map[string][]string, error) {
+func parseHeaders(headersString string) (map[string]string, error) {
 	headersString, err := trimHeadersString(headersString)
 	if err != nil {
 		return nil, err
 	}
-	headers := map[string][]string{}
+	headers := map[string]string{}
 	parts := strings.Split(headersString, ",")
 	for _, part := range parts {
 		subparts := strings.SplitN(part, "=", 2)
 		if len(subparts) != 2 {
 			return nil, fmt.Errorf("header had !=2 subparts when split by first '=': %s", part)
 		}
-		headers[strings.Trim(subparts[0], " ")] = []string{subparts[1]}
+		headers[strings.Trim(subparts[0], " ")] = subparts[1]
 	}
 	return headers, nil
 }
