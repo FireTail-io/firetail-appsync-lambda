@@ -1,0 +1,21 @@
+service: firetail-appsync-lambda
+
+frameworkVersion: ">=2.0"
+
+provider:
+  name: aws
+  region: eu-west-1
+  runtime: go1.x
+
+functions:
+  logs-handler:
+    handler: bin/logs-handler
+    timeout: 60
+    events:
+      - cloudwatchLog: '/aws/appsync/apis/lcyxyv2rungh7gdht7ylrudsjy'
+
+package:
+ exclude:
+   - ./**
+ include:
+   - ./bin/**

@@ -1,0 +1,7 @@
+{
+  "name": "firetail-appsync-lambda",
+  "version": "0.0.1",
+  "description": "Receives cloudwatch events from appsync apps and forwards them to the Firetal logs API",
+  "author": "Joshua O'Sullivan <joshua@firetail.io>",
+  "license": ""
+}
