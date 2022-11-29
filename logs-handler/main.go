@@ -4,12 +4,15 @@ import (
 	"context"
 	"encoding/json"
 	"log"
+	"os"
 
 	"github.com/pkg/errors"
 
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
 )
+
+var firetailApiKey string
 
 func Handler(ctx context.Context, event events.CloudwatchLogsEvent) error {
 	logsData, err := event.AWSLogs.Parse()
@@ -39,9 +42,10 @@ func Handler(ctx context.Context, event events.CloudwatchLogsEvent) error {
 		log.Println(string(logBytes))
 	}
 
-	return nil
+	return SendToFiretail(firetailLogs, firetailApiKey)
 }
 
 func main() {
+	firetailApiKey = os.Getenv("FIRETAIL_API_KEY")
 	lambda.Start(Handler)
 }
