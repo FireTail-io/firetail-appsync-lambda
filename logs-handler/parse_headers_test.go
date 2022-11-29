@@ -7,6 +7,22 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
+func TestTrimHeadersStringNoOpenBrace(t *testing.T) {
+	testString := "{Content-Type=application/json; charset=UTF-8"
+	result, err := trimHeadersString(testString)
+	assert.Zero(t, result)
+	require.NotNil(t, err)
+	assert.Equal(t, "headers string should end with '}'", err.Error())
+}
+
+func TestTrimHeadersStringNoCloseBrace(t *testing.T) {
+	testString := "{Content-Type=application/json; charset=UTF-8"
+	result, err := trimHeadersString(testString)
+	assert.Zero(t, result)
+	require.NotNil(t, err)
+	assert.Equal(t, "headers string should end with '}'", err.Error())
+}
+
 func TestParseHeaders(t *testing.T) {
 	testString := "{Content-Type=application/json; charset=UTF-8}"
 
@@ -16,6 +32,38 @@ func TestParseHeaders(t *testing.T) {
 	assert.Equal(t, result, map[string]string{
 		"Content-Type": "application/json; charset=UTF-8",
 	})
+}
+
+func TestParseHeadersMalformed(t *testing.T) {
+	testString := "{Content-Type:application/json; charset:UTF-8}"
+	result, err := parseHeaders(testString)
+	assert.Nil(t, result)
+	require.NotNil(t, err)
+	assert.Equal(t, "header had !=2 subparts when split by first '=': Content-Type:application/json; charset:UTF-8", err.Error())
+}
+
+func TestParseMultiValueHeadersMalformed(t *testing.T) {
+	testString := "{Content-Type:[application/json; charset:UTF-8]}"
+	result, err := parseMultivalueHeaders(testString)
+	assert.Nil(t, result)
+	require.NotNil(t, err)
+	assert.Equal(t, "multivalue header had !=2 subparts when split by first '=[': Content-Type:[application/json; charset:UTF-8]", err.Error())
+}
+
+func TestParseHeadersNoOpenBrace(t *testing.T) {
+	testString := "Content-Type=application/json; charset=UTF-8}"
+	result, err := parseHeaders(testString)
+	assert.Nil(t, result)
+	require.NotNil(t, err)
+	assert.Equal(t, "headers string should start with '{'", err.Error())
+}
+
+func TestParseMultiValueHeadersNoOpenBrace(t *testing.T) {
+	testString := "Content-Type=application/json; charset=UTF-8}"
+	result, err := parseMultivalueHeaders(testString)
+	assert.Nil(t, result)
+	require.NotNil(t, err)
+	assert.Equal(t, "headers string should start with '{'", err.Error())
 }
 
 func TestParseMultivalueHeaders(t *testing.T) {
