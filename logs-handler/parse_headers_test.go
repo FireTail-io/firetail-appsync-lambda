@@ -13,8 +13,8 @@ func TestParseHeaders(t *testing.T) {
 	result, err := parseHeaders(testString)
 	require.Nil(t, err)
 
-	assert.Equal(t, result, map[string][]string{
-		"Content-Type": {"application/json; charset=UTF-8"},
+	assert.Equal(t, result, map[string]string{
+		"Content-Type": "application/json; charset=UTF-8",
 	})
 }
 
