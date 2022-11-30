@@ -42,7 +42,11 @@ func Handler(ctx context.Context, event events.CloudwatchLogsEvent) error {
 		log.Println(string(logBytes))
 	}
 
-	return SendToFiretail(firetailLogs, firetailApiKey)
+	return SendToFiretail(
+		firetailLogs,
+		"https://api.logging.eu-west-1.sandbox.firetail.app/logs/aws/appsync",
+		firetailApiKey,
+	)
 }
 
 func main() {

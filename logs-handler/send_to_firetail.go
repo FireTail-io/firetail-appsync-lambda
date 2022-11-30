@@ -9,7 +9,7 @@ import (
 	"github.com/pkg/errors"
 )
 
-func SendToFiretail(firetailLogs map[string]*FiretailLog, apiKey string) error {
+func SendToFiretail(firetailLogs map[string]*FiretailLog, apiUrl, apiKey string) error {
 	reqBytes := []byte{}
 	for _, firetailLog := range firetailLogs {
 		logBytes, err := json.Marshal(*firetailLog)
@@ -22,7 +22,7 @@ func SendToFiretail(firetailLogs map[string]*FiretailLog, apiKey string) error {
 
 	req, err := http.NewRequest(
 		"POST",
-		"https://api.logging.eu-west-1.sandbox.firetail.app/logs/aws/appsync",
+		apiUrl,
 		bytes.NewBuffer(reqBytes),
 	)
 	if err != nil {
