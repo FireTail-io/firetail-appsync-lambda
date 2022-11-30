@@ -14,7 +14,7 @@ functions:
     handler: bin/logs-handler
     timeout: 60
     events:
-      - cloudwatchLog: '/aws/appsync/apis/lcyxyv2rungh7gdht7ylrudsjy'
+      - cloudwatchLog: ${param:cloudwatch-log-group}
 
 package:
  exclude:
