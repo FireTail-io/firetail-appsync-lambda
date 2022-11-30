@@ -15,7 +15,7 @@ make test
 go tool cover -html coverage.out
 ```
 
-Test coverate is uploaded to Codecov via [this GitHub action](./.github/workflows/codecov.yml).
+Test coverage is uploaded to Codecov via [this GitHub action](./.github/workflows/codecov.yml).
 
 
 
