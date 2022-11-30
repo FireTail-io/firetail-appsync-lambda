@@ -55,6 +55,11 @@ func ExtractFiretailLogs(logsData *events.CloudwatchLogsData) (map[string]*Firet
 			continue
 		}
 
+		// If nothing in the log was populated then we don't add it to the map
+		if !firetailLog.IsPopulated() {
+			continue
+		}
+
 		firetailLogs[requestID] = firetailLog
 	}
 
