@@ -140,6 +140,32 @@ func TestAddPlaintextEventResponseHeaders(t *testing.T) {
 	assert.Equal(t, "{\"TEST_HEADER\":\"TEST_VALUE\"}", string(*testLog.ResponseHeaders))
 }
 
+func TestAddPlaintextEventBrokenRequestHeaders(t *testing.T) {
+	testEvent := &events.CloudwatchLogsLogEvent{
+		ID:        "TEST_ID",
+		Timestamp: 3142,
+		Message:   "TEST_ID Request Headers: {TEST_HEADER=TEST_VALUE]}",
+	}
+	testLog := &FiretailLog{}
+	err := testLog.addPlaintextEventMessage(testEvent)
+	require.NotNil(t, err)
+	assert.Equal(t, "multivalue header had !=2 subparts when split by first '=[': TEST_HEADER=TEST_VALUE]", err.Error())
+	assert.Nil(t, testLog.RequestHeaders)
+}
+
+func TestAddPlaintextEventBrokenResponseHeaders(t *testing.T) {
+	testEvent := &events.CloudwatchLogsLogEvent{
+		ID:        "TEST_ID",
+		Timestamp: 3142,
+		Message:   "TEST_ID Response Headers: {TEST_HEADER=[TEST_VALUE_1, TEST_VALUE_2]}",
+	}
+	testLog := &FiretailLog{}
+	err := testLog.addPlaintextEventMessage(testEvent)
+	require.NotNil(t, err)
+	assert.Equal(t, "header had !=2 subparts when split by first '=':  TEST_VALUE_2]", err.Error())
+	assert.Nil(t, testLog.ResponseHeaders)
+}
+
 func TestAddPlaintextEventBeginRequest(t *testing.T) {
 	testEvent := &events.CloudwatchLogsLogEvent{
 		ID:        "TEST_ID",
