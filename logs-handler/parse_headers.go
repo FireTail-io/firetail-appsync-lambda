@@ -41,6 +41,10 @@ func parseHeaders(headersString string) (map[string]string, error) {
 }
 
 // (ー_ー)!! I am ashamed of this, please do not talk to me about it
+// Parses the multivalue headers string we get from CloudWatch into a map[string]string.
+// NOTE: AppSync gives us request headers in a plaintext format where values are comma separated.
+// We can't split these values by commas to separate out the individual values, however, as some
+// header values such as that of the User-Agent header may themselves contain a comma.
 func parseMultivalueHeaders(headersString string) (map[string]string, error) {
 	headersString, err := trimHeadersString(headersString)
 	if err != nil {
