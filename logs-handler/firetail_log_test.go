@@ -124,7 +124,7 @@ func TestAddPlaintextEventRequestHeaders(t *testing.T) {
 	err := testLog.addPlaintextEventMessage(testEvent)
 	require.Nil(t, err)
 	require.NotNil(t, testLog.RequestHeaders)
-	assert.Equal(t, "{\"TEST_HEADER\":[\"TEST_VALUE_1\",\"TEST_VALUE_2]\"]}", string(*testLog.RequestHeaders))
+	assert.Equal(t, "{\"TEST_HEADER\":[\"TEST_VALUE_1, TEST_VALUE_2\"]}", string(*testLog.RequestHeaders))
 }
 
 func TestAddPlaintextEventResponseHeaders(t *testing.T) {
