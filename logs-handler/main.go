@@ -10,7 +10,7 @@ var firetailApiUrl string
 var firetailApiKey string
 
 func main() {
-	firetailApiUrl = "https://api.logging.eu-west-1.sandbox.firetail.app/logs/aws/appsync"
+	firetailApiUrl = "https://api.logging.eu-west-1.prod.firetail.app/logs/aws/appsync"
 	firetailApiKey = os.Getenv("FIRETAIL_API_KEY")
 	lambda.Start(Handler)
 }
