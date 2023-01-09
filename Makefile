@@ -4,7 +4,3 @@ build:
 .PHONY: test
 test:
 	go test ./... -race -coverprofile coverage.out -covermode atomic
-
-.PHONY: clean
-clean:
-	rm -rf ./bin
