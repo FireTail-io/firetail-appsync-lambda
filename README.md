@@ -21,7 +21,45 @@ go tool cover -html coverage.out
 
 ## Deployment
 
-In order to use the Firetail AppSync lambda, an token for the Firetail Logs API is required. Documentation on how to obtain a Firetail Logs API token from the Firetail SaaS can be found [here](). #TODO
+1. [Install prerequisites](#installing-prerequisites)
+2. [Configure the AppSync app's Cloudwatch logs](#configuring-appsync)
+3. [Generate a Firetail API token](#generating-a-firetail-api-token)
+4. [Build the Firetail AppSync Lambda](#building-the-firetail-appsync-lambda)
+5. [Deploy the Firetail AppSync Lambda with Serverless](#deploying-the-firetail-appsync-lambda-with-serverless)
+
+
+
+### Installing prerequisites
+
+Building and deploying the Firetail AppSync Lambda requires the following prerequisites:
+
+- A Golang installation. See the [Download and Install instructions at go.dev](https://go.dev/doc/install).
+- The Serverless CLI. See [Setting Up Serverless Framework With AWS at serverless.com](https://www.serverless.com/framework/docs/getting-started).
+
+
+
+### Configuring AppSync
+
+Before deploying the Firetail AppSync Lambda, ensure the AppSync app is configured to log to Cloudwatch. The corresponding [AWS documentation can be found here](https://docs.aws.amazon.com/appsync/latest/devguide/monitoring.html).
+
+It is recommended to:
+
+- Enable include verbose content
+-  Set the field resolver log level to `All`
+
+📝 Take note of the name of the log group for the AppSync app, as this will be required when deploying the Firetail AppSync Lambda.
+
+
+
+### Generating a Firetail API Token
+
+In order to deploy the Firetail AppSync Lambda, an API token from the Firetail SaaS is required. Documentation on how to obtain a Firetail API token from the Firetail SaaS can be found [here](). #TODO
+
+📝 Take note of the Firetail API token, as this will be required when deploying the Firetail AppSync Lambda.
+
+
+
+### Building the Firetail AppSync Lambda
 
 The Firetail AppSync Lambda is written in Go, and can be built using the standard `go build` command. First, clone the repository and change directory into `logs-handler`, where the Lambda's source is located:
 
