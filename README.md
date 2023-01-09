@@ -21,16 +21,37 @@ Test coverage is uploaded to Codecov via [this GitHub action](./.github/workflow
 
 ## Deployment
 
-The Firetail AppSync Lambda is written in Go, and can be built using the standard `go build` command. A [Makefile](./Makefile) is provided which will build the binary and place it in a `bin` directory as per the [serverless.yml](./serverless.yml)'s `handler` property for the `logs-handler` function.
+The Firetail AppSync Lambda is written in Go, and can be built using the standard `go build` command. First, clone the repository and change directory into `logs-handler`, where the Lambda's source is located:
+
+```bash
+git clone git@github.com:FireTail-io/firetail-appsync-lambda.git
+cd firetail-appsync-lambda/logs-hander
+```
+
+Before building the source into a binary, set `GOARCH` to `amd64` and `GOOS` to `linux` to ensure the binary will be compatible with the [Lambda go runtime](https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html):
+
+```bash
+GOARCH=amd64 GOOS=linux
+```
+
+Next, build the binary and output it into a `bin` directory at the root of the repo. `-ldflags="-s -w"` can be used to marginally reduce the size of the binary:
+
+```bash
+go build -ldflags="-s -w" -o ../bin/logs-handler
+```
+
+A [serverless.yml](./serverless.yml) is provided in the root of this repository which can be used to deploy this binary to Lambda, and expects the binary to be found in a `bin` directory at the root of the repo, hence `-o ../bin/logs-handler`.
 
 The provided [serverless.yml](./serverless.yml) has two parameters:
 
-1. `firetail-api-key`, your API key for the Firetail Logs API.
-2. `cloudwatch-log-group`, the log group for your AppSync API in Cloudwatch.
+1. `firetail-api-key`, an API key for the Firetail Logs API.
+2. `cloudwatch-log-group`, the log group for an AppSync API in Cloudwatch.
 
-Once you have these values, and the binary is built, you should be able to do:
+Given these two values, the Lambda can be deployed by returning to the root of the repository and using the following serverless command:
 
 ```bash
+cd ..
 sls deploy --param="firetail-api-key=YOUR_FIRETAIL_API_KEY" --param="cloudwatch-log-group=YOUR_CLOUDWATCH_LOG_GROUP"
 ```
 
+This serverless command may require additional flags depending upon the use case, for example to specify the region in which the Lambda should be deployed. See `sls deploy --help` for a list of available flags.
