@@ -9,7 +9,7 @@ import (
 	"github.com/pkg/errors"
 )
 
-func SendToFiretail(firetailLogs map[string]*FiretailLog, apiUrl, apiKey string) error {
+func SendToFiretail(firetailLogs map[string]*FiretailLog, apiUrl, apiToken string) error {
 	reqBytes := []byte{}
 	for _, firetailLog := range firetailLogs {
 		logBytes, err := json.Marshal(*firetailLog)
@@ -29,7 +29,7 @@ func SendToFiretail(firetailLogs map[string]*FiretailLog, apiUrl, apiKey string)
 		return err
 	}
 
-	req.Header.Set("x-ft-api-key", apiKey)
+	req.Header.Set("x-ft-api-key", apiToken)
 
 	resp, err := http.DefaultClient.Do(req)
 	if err != nil {

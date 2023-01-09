@@ -21,6 +21,8 @@ Test coverage is uploaded to Codecov via [this GitHub action](./.github/workflow
 
 ## Deployment
 
+In order to use the Firetail AppSync lambda, an token for the Firetail Logs API is required. Documentation on how to obtain a Firetail Logs API token from the Firetail SaaS can be found [here](). #TODO
+
 The Firetail AppSync Lambda is written in Go, and can be built using the standard `go build` command. First, clone the repository and change directory into `logs-handler`, where the Lambda's source is located:
 
 ```bash
@@ -44,14 +46,14 @@ A [serverless.yml](./serverless.yml) is provided in the root of this repository 
 
 The provided [serverless.yml](./serverless.yml) has two parameters:
 
-1. `firetail-api-key`, an API key for the Firetail Logs API.
+1. `firetail-api-token`, an API token for the Firetail Logs API.
 2. `cloudwatch-log-group`, the log group for an AppSync API in Cloudwatch.
 
 Given these two values, the Lambda can be deployed by returning to the root of the repository and using the following serverless command:
 
 ```bash
 cd ..
-sls deploy --param="firetail-api-key=YOUR_FIRETAIL_API_KEY" --param="cloudwatch-log-group=YOUR_CLOUDWATCH_LOG_GROUP"
+sls deploy --param="firetail-api-token=YOUR_FIRETAIL_API_TOKEN" --param="cloudwatch-log-group=YOUR_CLOUDWATCH_LOG_GROUP"
 ```
 
 This serverless command may require additional flags depending upon the use case, for example to specify the region in which the Lambda should be deployed. See `sls deploy --help` for a list of available flags.
