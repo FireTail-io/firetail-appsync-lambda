@@ -33,8 +33,9 @@ go tool cover -html coverage.out
 
 Building and deploying the Firetail AppSync Lambda requires the following prerequisites:
 
-- A Golang installation. See the [Download and Install instructions at go.dev](https://go.dev/doc/install).
-- The Serverless CLI. See [Setting Up Serverless Framework With AWS at serverless.com](https://www.serverless.com/framework/docs/getting-started).
+- A Go installation - see the [Download and Install instructions at go.dev](https://go.dev/doc/install)
+- The Serverless CLI - see [Setting Up Serverless Framework With AWS at serverless.com](https://www.serverless.com/framework/docs/getting-started)
+- An account and organisation on the Firetail SaaS - visit [firetail.app](https://firetail.app) to get started
 
 
 
@@ -44,8 +45,8 @@ Before deploying the Firetail AppSync Lambda, ensure the AppSync app is configur
 
 It is recommended to:
 
-- Enable include verbose content
--  Set the field resolver log level to `All`
+- Enable **include verbose content**
+- Set the **field resolver log level** to **All**
 
 📝 Take note of the name of the log group for the AppSync app, as this will be required when deploying the Firetail AppSync Lambda.
 
@@ -68,7 +69,7 @@ git clone git@github.com:FireTail-io/firetail-appsync-lambda.git
 cd firetail-appsync-lambda/logs-hander
 ```
 
-Before building the source into a binary, set `GOARCH` to `amd64` and `GOOS` to `linux` to ensure the binary will be compatible with the [Lambda go runtime](https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html):
+Before building the source into a binary, set `GOARCH` to `amd64` and `GOOS` to `linux` to ensure the binary will be compatible with the [Lambda Go runtime](https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html):
 
 ```bash
 GOARCH=amd64 GOOS=linux
