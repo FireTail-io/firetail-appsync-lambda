@@ -89,8 +89,8 @@ The [serverless.yml](./serverless.yml) provided in the root of this repository c
 
 A [serverless.yml](./serverless.yml) is provided in the root of this repository, which has two parameters:
 
-1. `cloudwatch-log-group`, the log group for an AppSync API in Cloudwatch (see [Configuring AppSync](#configuring-appsync))
-2. `firetail-api-token`, an API token from the Firetail SaaS (see [Generating a Firetail API Token](#generating-a-firetail-api-token))
+1. `cloudwatch-log-group`, the log group for an AppSync API in Cloudwatch (see [Configuring AppSync📝](#configuring-appsync))
+2. `firetail-api-token`, an API token from the Firetail SaaS (see [Generating a Firetail API Token📝](#generating-a-firetail-api-token))
 
 Given these two values, the Lambda can be deployed by running the following serverless command from the root of the repository:
 
