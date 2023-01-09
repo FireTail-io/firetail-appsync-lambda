@@ -45,8 +45,8 @@ Before deploying the Firetail AppSync Lambda, ensure the AppSync app is configur
 
 It is recommended to:
 
-- Enable **include verbose content**
-- Set the **field resolver log level** to **All**
+- Enable **Include verbose content**
+- Set the **Field resolver log level** to **All**
 
 📝 Take note of the name of the log group for the AppSync app, as this will be required when deploying the Firetail AppSync Lambda.
 
@@ -83,7 +83,11 @@ go build -ldflags="-s -w" -o ../bin/logs-handler
 
 A [serverless.yml](./serverless.yml) is provided in the root of this repository which can be used to deploy this binary to Lambda, and expects the binary to be found in a `bin` directory at the root of the repository, hence `-o ../bin/logs-handler`.
 
-The provided [serverless.yml](./serverless.yml) has two parameters:
+
+
+### Deploying the Firetail AppSync Lambda with Serverless
+
+A [serverless.yml](./serverless.yml) is provided in the root of this repository, which has two parameters:
 
 1. `firetail-api-token`, an API token for the Firetail Logs API.
 2. `cloudwatch-log-group`, the log group for an AppSync API in Cloudwatch.
@@ -91,7 +95,6 @@ The provided [serverless.yml](./serverless.yml) has two parameters:
 Given these two values, the Lambda can be deployed by running the following serverless command from the root of the repository:
 
 ```bash
-cd ..
 sls deploy --param="firetail-api-token=YOUR_FIRETAIL_API_TOKEN" --param="cloudwatch-log-group=YOUR_CLOUDWATCH_LOG_GROUP"
 ```
 
