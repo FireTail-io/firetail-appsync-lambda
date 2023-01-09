@@ -19,7 +19,7 @@ go tool cover -html coverage.out
 
 
 
-## Deployment
+## Setup Guide
 
 1. [Install prerequisites](#installing-prerequisites)
 2. [Configure the AppSync app's Cloudwatch logs](#configuring-appsync)
@@ -81,7 +81,7 @@ Next, build the binary and output it into a `bin` directory at the root of the r
 go build -ldflags="-s -w" -o ../bin/logs-handler
 ```
 
-A [serverless.yml](./serverless.yml) is provided in the root of this repository which can be used to deploy this binary to Lambda, and expects the binary to be found in a `bin` directory at the root of the repository, hence `-o ../bin/logs-handler`.
+The [serverless.yml](./serverless.yml) is provided in the root of this repository which can be used to deploy this binary to Lambda, and expects the binary to be found in a `bin` directory at the root of the repository, hence `-o ../bin/logs-handler`.
 
 
 
@@ -89,13 +89,13 @@ A [serverless.yml](./serverless.yml) is provided in the root of this repository 
 
 A [serverless.yml](./serverless.yml) is provided in the root of this repository, which has two parameters:
 
-1. `firetail-api-token`, an API token for the Firetail Logs API.
-2. `cloudwatch-log-group`, the log group for an AppSync API in Cloudwatch.
+1. `cloudwatch-log-group`, the log group for an AppSync API in Cloudwatch (see [Configuring AppSync](#configuring-appsync))
+2. `firetail-api-token`, an API token for the Firetail Logs API (see [Generating a Firetail API Token](#generating-a-firetail-api-token))
 
 Given these two values, the Lambda can be deployed by running the following serverless command from the root of the repository:
 
 ```bash
-sls deploy --param="firetail-api-token=YOUR_FIRETAIL_API_TOKEN" --param="cloudwatch-log-group=YOUR_CLOUDWATCH_LOG_GROUP"
+sls deploy --param="cloudwatch-log-group=YOUR_CLOUDWATCH_LOG_GROUP" --param="firetail-api-token=YOUR_FIRETAIL_API_TOKEN"
 ```
 
 This serverless command may require additional flags depending upon the use case, for example to specify the region in which the Lambda should be deployed. See `sls deploy --help` for a list of available flags.
