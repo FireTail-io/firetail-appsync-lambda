@@ -49,7 +49,7 @@ The provided [serverless.yml](./serverless.yml) has two parameters:
 1. `firetail-api-token`, an API token for the Firetail Logs API.
 2. `cloudwatch-log-group`, the log group for an AppSync API in Cloudwatch.
 
-Given these two values, the Lambda can be deployed by returning to the root of the repository and using the following serverless command:
+Given these two values, the Lambda can be deployed by running the following serverless command from the root of the repository:
 
 ```bash
 cd ..
