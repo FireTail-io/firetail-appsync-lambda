@@ -83,6 +83,14 @@ go build -ldflags="-s -w" -o ../bin/logs-handler
 
 The [serverless.yml](./serverless.yml) provided in the root of this repository can be used to deploy this binary to Lambda, and expects the binary to be found in a `bin` directory at the root of the repository, hence `-o ../bin/logs-handler`.
 
+The process of building the Firetail AppSync Lambda binary can alternatively be performed using [the Makefile at the root of this repository](./Makefile), using the `build` target:
+
+```bash
+git clone git@github.com:FireTail-io/firetail-appsync-lambda.git
+cd firetail-appsync-lambda
+make build
+```
+
 
 
 ### Deploying the Firetail AppSync Lambda with Serverless
