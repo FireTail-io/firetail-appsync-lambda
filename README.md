@@ -36,13 +36,13 @@ Before building the source into a binary, set `GOARCH` to `amd64` and `GOOS` to 
 GOARCH=amd64 GOOS=linux
 ```
 
-Next, build the binary and output it into a `bin` directory at the root of the repo. `-ldflags="-s -w"` can be used to marginally reduce the size of the binary:
+Next, build the binary and output it into a `bin` directory at the root of the repository. `-ldflags="-s -w"` can be used to marginally reduce the size of the binary:
 
 ```bash
 go build -ldflags="-s -w" -o ../bin/logs-handler
 ```
 
-A [serverless.yml](./serverless.yml) is provided in the root of this repository which can be used to deploy this binary to Lambda, and expects the binary to be found in a `bin` directory at the root of the repo, hence `-o ../bin/logs-handler`.
+A [serverless.yml](./serverless.yml) is provided in the root of this repository which can be used to deploy this binary to Lambda, and expects the binary to be found in a `bin` directory at the root of the repository, hence `-o ../bin/logs-handler`.
 
 The provided [serverless.yml](./serverless.yml) has two parameters:
 
