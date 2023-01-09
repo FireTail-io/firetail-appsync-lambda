@@ -8,7 +8,3 @@ test:
 .PHONY: clean
 clean:
 	rm -rf ./bin
-
-.PHONY: deploy
-deploy: clean build
-	sls deploy --verbose
