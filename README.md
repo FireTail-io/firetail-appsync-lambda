@@ -48,7 +48,7 @@ It is recommended to:
 - Enable **Include verbose content**
 - Set the **Field resolver log level** to **All**
 
-📝 Take note of the name of the log group for the AppSync app, as this will be required when deploying the Firetail AppSync Lambda.
+📝 Take note of the name of the log group for the AppSync app, as this will be required when deploying the Firetail AppSync Lambda. It should be of the format `/aws/appsync/apis/{graphql_api_id}`.
 
 
 
