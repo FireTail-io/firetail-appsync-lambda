@@ -48,7 +48,7 @@ It is recommended to:
 - Enable **Include verbose content**
 - Set the **Field resolver log level** to **All**
 
-📝 Take note of the name of the log group for the AppSync app, as this will be required when deploying the Firetail AppSync Lambda. It should be of the format `/aws/appsync/apis/{graphql_api_id}`.
+📝 Take note of the name of the Cloudwatch log group for the AppSync app, as this will be required when deploying the Firetail AppSync Lambda. It should be of the format `/aws/appsync/apis/{graphql_api_id}`.
 
 
 
@@ -81,7 +81,7 @@ Next, build the binary and output it into a `bin` directory at the root of the r
 go build -ldflags="-s -w" -o ../bin/logs-handler
 ```
 
-The [serverless.yml](./serverless.yml) is provided in the root of this repository which can be used to deploy this binary to Lambda, and expects the binary to be found in a `bin` directory at the root of the repository, hence `-o ../bin/logs-handler`.
+The [serverless.yml](./serverless.yml) provided in the root of this repository can be used to deploy this binary to Lambda, and expects the binary to be found in a `bin` directory at the root of the repository, hence `-o ../bin/logs-handler`.
 
 
 
@@ -90,7 +90,7 @@ The [serverless.yml](./serverless.yml) is provided in the root of this repositor
 A [serverless.yml](./serverless.yml) is provided in the root of this repository, which has two parameters:
 
 1. `cloudwatch-log-group`, the log group for an AppSync API in Cloudwatch (see [Configuring AppSync](#configuring-appsync))
-2. `firetail-api-token`, an API token for the Firetail Logs API (see [Generating a Firetail API Token](#generating-a-firetail-api-token))
+2. `firetail-api-token`, an API token from the Firetail SaaS (see [Generating a Firetail API Token](#generating-a-firetail-api-token))
 
 Given these two values, the Lambda can be deployed by running the following serverless command from the root of the repository:
 
