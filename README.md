@@ -8,14 +8,14 @@ The Firetail AppSync Lambda is intended to recieve Cloudwatch log events regardi
 
 ## Tests
 
-Tests can be run with the standard `go test` command. [stretchr/testify](https://github.com/stretchr/testify) has been used for shorthand assertions. You may use the provided [Makefile](./Makefile) to generate a coverage report and view it in your browser using `go tool cover`:
+Tests can be run with the standard `go test` command. [stretchr/testify](https://github.com/stretchr/testify) has been used for shorthand assertions. 
+
+A [Makefile](./Makefile) is provided which is used by [this GitHub action](./.github/workflows/codecov.yml) to upload coverage reports to Codecov. The Makefile can be used to generate the same coverage report locally, which you can then view in your browser using `go tool cover`:
 
 ```bash
 make test
 go tool cover -html coverage.out
 ```
-
-Test coverage is uploaded to Codecov via [this GitHub action](./.github/workflows/codecov.yml).
 
 
 
