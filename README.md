@@ -2,7 +2,7 @@
 
 [![License: LGPL v3](https://img.shields.io/badge/License-LGPL_v3-blue.svg)](https://www.gnu.org/licenses/lgpl-3.0) ![Test and coverage](https://github.com/FireTail-io/firetail-appsync-lambda/actions/workflows/codecov.yml/badge.svg?branch=main) [![codecov](https://codecov.io/gh/FireTail-io/firetail-appsync-lambda/branch/main/graph/badge.svg?token=GEPKMSC5ID)](https://codecov.io/gh/FireTail-io/firetail-appsync-lambda)
 
-The Firetail AppSync Lambda recieves Cloudwatch log events from AppSync APIs, and forwards request and response data to the Firetail SaaS.
+The Firetail AppSync Lambda recieves Cloudwatch log events from AppSync APIs, and forwards request and response data to [Firetail.App](https://firetail.app/).
 
 
 
@@ -55,7 +55,7 @@ It is recommended to:
 
 In order to deploy the Firetail AppSync Lambda, an API token from the Firetail SaaS is required. 
 
-Create an account at [firetail.app](https://firetail.app/), then:
+Create an account at [Firetail.App](https://firetail.app/), then:
 
 1. If you do not already have an organisation: go to [firetail.app/organisations](https://firetail.app/organisations), click **Create Organisation**, select a plan, and give the organisation a name and description.
 2. On the organisation page visit the **Applications** tab\* and click **Create Application**. Give the application a name.
