@@ -35,7 +35,6 @@ Building and deploying the Firetail AppSync Lambda requires the following depend
 
 - A Go installation - see the [Download and Install instructions at go.dev](https://go.dev/doc/install)
 - The Serverless CLI - see [Setting Up Serverless Framework With AWS at serverless.com](https://www.serverless.com/framework/docs/getting-started)
-- An account and organisation on the Firetail SaaS - visit [firetail.app](https://firetail.app) to get started
 
 
 
@@ -52,11 +51,19 @@ It is recommended to:
 
 
 
-### Generating a Firetail API Token
+### Generating A Firetail API Token
 
-In order to deploy the Firetail AppSync Lambda, an API token from the Firetail SaaS is required. Documentation on how to obtain a Firetail API token from the Firetail SaaS can be found [here](). #TODO
+In order to deploy the Firetail AppSync Lambda, an API token from the Firetail SaaS is required. 
 
-📝 Take note of the Firetail API token, as this will be required when deploying the Firetail AppSync Lambda.
+Create an account at [firetail.app](https://firetail.app/), then:
+
+1. If you do not already have an organisation: go to [firetail.app/organisations](https://firetail.app/organisations), click **Create Organisation**, select a plan, and give the organisation a name and description.
+2. On the organisation page visit the **Applications** tab\* and click **Create Application**. Give the application a name.
+3. On the application page visit the **Tokens** tab\*\* and click **Create Token**. Give the token a name, then take note of the **Token Secret** as this will be required when deploying the Firetail AppSync Lambda. 📝
+
+\*`https://firetail.app/organisations/your-organisation-id/applications`
+
+\*\*`https://firetail.app/organisations/your-organisation-id/applications/your-application-id/tokens` 
 
 
 
