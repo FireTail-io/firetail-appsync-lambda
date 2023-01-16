@@ -21,7 +21,7 @@ go tool cover -html coverage.out
 
 ## Setup Guide
 
-1. [Install prerequisites](#installing-prerequisites)
+1. [Install dependencies](#installing-dependencies)
 2. [Configure the AppSync app's Cloudwatch logs](#configuring-appsync)
 3. [Generate a Firetail API token](#generating-a-firetail-api-token)
 4. [Build the Firetail AppSync Lambda](#building-the-firetail-appsync-lambda)
@@ -29,9 +29,9 @@ go tool cover -html coverage.out
 
 
 
-### Installing prerequisites
+### Installing Dependencies
 
-Building and deploying the Firetail AppSync Lambda requires the following prerequisites:
+Building and deploying the Firetail AppSync Lambda requires the following dependencies:
 
 - A Go installation - see the [Download and Install instructions at go.dev](https://go.dev/doc/install)
 - The Serverless CLI - see [Setting Up Serverless Framework With AWS at serverless.com](https://www.serverless.com/framework/docs/getting-started)
@@ -60,7 +60,7 @@ In order to deploy the Firetail AppSync Lambda, an API token from the Firetail S
 
 
 
-### Building the Firetail AppSync Lambda
+### Building The Firetail AppSync Lambda
 
 The Firetail AppSync Lambda is written in Go, and can be built using the standard `go build` command. First, clone the repository and change directory into `logs-handler`, where the Lambda's source is located:
 
@@ -93,7 +93,7 @@ make build
 
 
 
-### Deploying the Firetail AppSync Lambda with Serverless
+### Deploying The Firetail AppSync Lambda With Serverless
 
 A [serverless.yml](./serverless.yml) is provided in the root of this repository, which has two parameters:
 
