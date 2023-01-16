@@ -59,11 +59,14 @@ Create an account at [Firetail.App](https://firetail.app/), then:
 
 1. If you do not already have an organisation: go to [firetail.app/organisations](https://firetail.app/organisations), click **Create Organisation**, select a plan, and give the organisation a name and description.
 2. On the organisation page visit the **Applications** tab\* and click **Create Application**. Give the application a name.
-3. On the application page visit the **Tokens** tab\*\* and click **Create Token**. Give the token a name, then take note of the **Token Secret** as this will be required when deploying the Firetail AppSync Lambda. 📝
+3. On the application page visit the **APIs** tab\*\* and click **Create API**. Give the API a name and set the **API Type** to **GraphQL**. 
+4. On the API page visit the **Tokens** tab\*\*\* and click **Create Token**. Give the token a name, then take note of the **Token Secret** as this will be required when deploying the Firetail AppSync Lambda. 📝
 
-\*`https://firetail.app/organisations/your-organisation-id/applications`
+\*`https://firetail.app/organisations/your-org-id/applications`
 
-\*\*`https://firetail.app/organisations/your-organisation-id/applications/your-application-id/tokens` 
+\*\*`https://firetail.app/organisations/your-org-id/applications/your-app-id/apis` 
+
+\*\*\*`https://firetail.app/organisations/your-org-id/applications/your-app-id/apis/your-api-id/tokens`
 
 
 
