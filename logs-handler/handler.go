@@ -33,5 +33,5 @@ func Handler(ctx context.Context, event events.CloudwatchLogsEvent) error {
 		log.Println(string(logBytes))
 	}
 
-	return SendToFiretail(firetailLogs, firetailApiUrl, firetailApiKey)
+	return SendToFiretail(firetailLogs, firetailApiUrl, firetailApiToken)
 }
