@@ -1,6 +1,6 @@
 service: firetail-appsync-lambda
 
-frameworkVersion: ">=2.0"
+frameworkVersion: "<=3.26.0"
 
 provider:
   name: aws
