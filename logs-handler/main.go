@@ -6,15 +6,21 @@ import (
 	"github.com/aws/aws-lambda-go/lambda"
 )
 
+const DefaultFiretailApiUrl string = "https://api.logging.eu-west-1.prod.firetail.app/logs/aws/appsync"
+
 var firetailApiUrl string
 var firetailApiToken string
 
-func main() {
+func loadEnvVars() {
 	var firetailApiUrlSet bool
 	firetailApiUrl, firetailApiUrlSet = os.LookupEnv("FIRETAIL_API_URL")
 	if !firetailApiUrlSet {
-		firetailApiUrl = "https://api.logging.eu-west-1.prod.firetail.app/logs/aws/appsync"
+		firetailApiUrl = DefaultFiretailApiUrl
 	}
-	firetailApiToken = os.Getenv("FIRETAIL_API_TOKEN")
+	firetailApiToken = os.Getenv("FIRETAIL_API_TOKEN")	
+}
+
+func main() {
+	loadEnvVars()
 	lambda.Start(Handler)
 }
