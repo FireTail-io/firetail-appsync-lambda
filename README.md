@@ -82,7 +82,7 @@ cd firetail-appsync-lambda/logs-hander
 Before building the source into a binary, set `GOARCH` to `amd64` and `GOOS` to `linux` to ensure the binary will be compatible with the [Lambda Go runtime](https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html):
 
 ```bash
-GOARCH=amd64 GOOS=linux
+export GOARCH=amd64 GOOS=linux
 ```
 
 Next, build the binary and output it into a `bin` directory at the root of the repository. `-ldflags="-s -w"` can be used to marginally reduce the size of the binary:
