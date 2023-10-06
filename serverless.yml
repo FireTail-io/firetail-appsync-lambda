@@ -8,6 +8,7 @@ provider:
   runtime: go1.x
   environment:
     FIRETAIL_API_TOKEN: ${param:firetail-api-token}
+    FIRETAIL_API_URL: ${param:firetail-api-url}
 
 functions:
   logs-handler:
@@ -17,7 +18,7 @@ functions:
       - cloudwatchLog: ${param:cloudwatch-log-group}
 
 package:
- exclude:
-   - ./**
- include:
-   - ./bin/**
+  exclude:
+    - ./**
+  include:
+    - ./bin/**
