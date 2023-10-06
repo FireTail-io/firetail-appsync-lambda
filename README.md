@@ -86,15 +86,19 @@ A more in-depth explanation of how to build the Firetail AppSync Lambda from sou
 
 ### Deploying The Firetail AppSync Lambda With Serverless
 
-A [serverless.yml](./serverless.yml) is provided in the root of this repository, which has two parameters:
+A [serverless.yml](./serverless.yml) is provided in the root of this repository, which has three parameters:
 
 1. `cloudwatch-log-group`, the log group for an AppSync API in Cloudwatch (see [Configuring AppSync📝](#configuring-appsync))
 2. `firetail-api-token`, an API token from the Firetail SaaS (see [Generating a Firetail API Token📝](#generating-a-firetail-api-token))
+3. `firetail-api-url`, the url of the Firetail API to send logs to. This differs depending on the region of the Firetail SaaS you're using.
+   1. For `firetail.app`, use `api.logging.eu-west-1.prod.firetail.app`.
+   2. For `us.firetail.app`, use `api.logging.us-east-2.prod.us``.firetail.app`.
+
 
 Given these two values, the Lambda can be deployed by running the following serverless command from the root of the repository:
 
 ```bash
-sls deploy --param="cloudwatch-log-group=YOUR_CLOUDWATCH_LOG_GROUP" --param="firetail-api-token=YOUR_FIRETAIL_API_TOKEN"
+sls deploy --param="cloudwatch-log-group=YOUR_CLOUDWATCH_LOG_GROUP" --param="firetail-api-token=YOUR_FIRETAIL_API_TOKEN" --param="firetail-api-url=FIRETAIL_API_URL_FOR_YOUR_CHOSEN_REGION"
 ```
 
 This serverless command may require additional flags depending upon the use case, for example to specify the region in which the Lambda should be deployed. See `sls deploy --help` for a list of available flags.
