@@ -91,8 +91,8 @@ A [serverless.yml](./serverless.yml) is provided in the root of this repository,
 1. `cloudwatch-log-group`, the log group for an AppSync API in Cloudwatch (see [Configuring AppSync📝](#configuring-appsync))
 2. `firetail-api-token`, an API token from the Firetail SaaS (see [Generating a Firetail API Token📝](#generating-a-firetail-api-token))
 3. `firetail-api-url`, the url of the Firetail API to send logs to. This differs depending on the region of the Firetail SaaS you're using.
-   1. For `firetail.app`, use `api.logging.eu-west-1.prod.firetail.app`.
-   2. For `us.firetail.app`, use `api.logging.us-east-2.prod.us``.firetail.app`.
+   1. For `firetail.app`, use `https://api.logging.eu-west-1.prod.firetail.app/logs/aws/appsync`.
+   2. For `us.firetail.app`, use `https://api.logging.us-east-2.prod.firetail.app/logs/aws/appsync`.
 
 
 Given these two values, the Lambda can be deployed by running the following serverless command from the root of the repository:
